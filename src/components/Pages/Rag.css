@@ -1,0 +1,384 @@
+.rag-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    font-family: Arial, sans-serif;
+    color: white;
+    height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .rag-header {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .rag-header h1 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .rag-header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 25%;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(93,22,204,1) 0%, rgba(240,240,255,0.8) 100%);
+  }
+  
+  .rag-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+  
+  .upload-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .upload-section:hover {
+    box-shadow: 0px 8px 20px rgba(93, 22, 204, 0.3);
+  }
+  
+  .file-input-container {
+    position: relative;
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .file-input {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+  }
+  
+  .file-label {
+    display: block;
+    padding: 12px 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .file-label:hover {
+    background-color: rgba(93, 22, 204, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .upload-btn, .reset-btn, .query-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, rgba(93,22,204,1) 0%, rgba(147,51,234,1) 50%, rgba(7,82,97,1) 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .upload-btn::before, .reset-btn::before, .query-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(7,82,97,1) 0%, rgba(147,51,234,1) 50%, rgba(93,22,204,1) 100%);
+    transition: left 0.5s ease;
+    z-index: -1;
+  }
+  
+  .upload-btn:hover::before, .reset-btn:hover::before, .query-btn:hover::before {
+    left: 0;
+  }
+  
+  .upload-btn:hover, .reset-btn:hover, .query-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(93, 22, 204, 0.4);
+  }
+  
+  .upload-btn:active, .reset-btn:active, .query-btn:active {
+    transform: translateY(1px);
+  }
+  
+  .reset-btn {
+    background: linear-gradient(45deg, #6b7280, #4b5563);
+  }
+  
+  .reset-btn::before {
+    background: linear-gradient(45deg, #4b5563, #6b7280);
+  }
+  
+  .upload-btn:disabled, .query-btn:disabled {
+    background: #6b7280;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .upload-btn:disabled::before, .query-btn:disabled::before {
+    display: none;
+  }
+  
+  .upload-btn.loading, .query-btn.loading {
+    color: rgba(255, 255, 255, 0.7);
+    position: relative;
+  }
+  
+  .upload-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: calc(50% - 10px);
+    left: calc(50% - 10px);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  .query-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: calc(50% - 8px);
+    left: calc(50% - 8px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .error-message {
+    color: #f87171;
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: rgba(248, 113, 113, 0.1);
+    border-radius: 8px;
+    border-left: 3px solid #f87171;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .chat-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .query-form {
+    display: flex;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .query-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+  }
+  
+  .query-input:focus {
+    outline: none;
+    border-color: rgba(147, 51, 234, 0.6);
+    box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.2);
+  }
+  
+  .query-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .query-btn {
+    padding: 10px 20px;
+    min-width: 80px;
+  }
+  
+  .conversation-container {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse; /* Show newest messages at the bottom */
+    gap: 15px;
+  }
+  
+  .message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    animation: fadeIn 0.3s ease-in-out;
+    max-width: 80%;
+  }
+  
+  .message.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+  
+  .message.bot {
+    align-self: flex-start;
+  }
+  
+  .message.system {
+    align-self: center;
+    background-color: rgba(147, 51, 234, 0.2);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-style: italic;
+    max-width: 90%;
+    text-align: center;
+  }
+  
+  .message-content {
+    padding: 12px 15px;
+    border-radius: 18px;
+    position: relative;
+    word-break: break-word;
+    line-height: 1.5;
+  }
+  
+  .message.user .message-content {
+    background-color: rgba(93, 22, 204, 0.6);
+    border-bottom-right-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .message.bot .message-content {
+    background-color: rgba(7, 82, 97, 0.6);
+    border-bottom-left-radius: 4px;
+    margin-left: 10px;
+  }
+  
+  .message-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  
+  .user-avatar {
+    background-color: rgba(93, 22, 204, 0.9);
+  }
+  
+  .bot-avatar {
+    background-color: rgba(7, 82, 97, 0.9);
+  }
+  
+  .empty-conversation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+  }
+  
+  .empty-conversation p {
+    margin-top: 15px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .rag-container {
+      padding: 15px;
+      height: calc(100vh - 80px);
+    }
+    
+    .upload-section {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .file-input-container {
+      width: 100%;
+    }
+    
+    .upload-btn, .reset-btn {
+      width: 100%;
+    }
+    
+    .message {
+      max-width: 90%;
+    }
+  }

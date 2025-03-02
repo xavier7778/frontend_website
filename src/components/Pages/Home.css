@@ -1,0 +1,150 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 25%, #c4b5fd 50%, #a5f3fc 75%, #fce7f3 100%);
+  background-attachment: fixed;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.homepage {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+header h1 {
+  font-size: 36px;
+  color: #7c3aed;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header p {
+  font-size: 18px;
+  color: #6b21a8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.functionality {
+  margin-bottom: 30px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-decoration-line: none;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.functionality:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.chatbot-summary, .pdf-chatbot {
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+.functionality h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: #7c3aed;
+  position: relative;
+  display: inline-block;
+}
+
+.functionality h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #8b5cf6, #ec4899);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.functionality:hover h2::after {
+  width: 100%;
+}
+
+.functionality p {
+  font-size: 16px;
+  color: #6b21a8;
+  line-height: 1.7;
+}
+
+.functionality:hover .chatbot-summary {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  border-radius: 12px;
+  color: #4b5563;
+}
+
+.functionality:hover .pdf-chatbot {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  border-radius: 12px;
+  color: #4b5563;
+}
+
+/* Add new decorative elements */
+.functionality {
+  position: relative;
+  overflow: hidden;
+}
+
+.functionality::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.functionality:hover::before {
+  opacity: 1;
+}
+
+/* Add responsive improvements */
+@media screen and (max-width: 600px) {
+  .homepage {
+    padding: 15px;
+    margin: 20px auto;
+  }
+  
+  header {
+    padding: 20px 15px;
+  }
+  
+  header h1 {
+    font-size: 28px;
+  }
+  
+  .functionality {
+    margin-bottom: 20px;
+  }
+  
+  .chatbot-summary, .pdf-chatbot {
+    padding: 20px;
+  }
+}

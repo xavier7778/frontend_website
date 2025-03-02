@@ -1,0 +1,215 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 40px;
+    height: calc(100vh - 100px);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.left-section, 
+.right-section {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+}
+
+.left-section:hover, 
+.right-section:hover {
+    transform: translateY(-5px);
+}
+
+.left-section h1,
+.right-section h1 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+}
+
+.left-section h1::after,
+.right-section h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(93,22,204,1) 0%, rgba(240,240,255,0.8) 100%);
+    transition: width 0.4s ease;
+}
+
+.left-section:hover h1::after,
+.right-section:hover h1::after {
+    width: 100%;
+}
+
+.input-text {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    font-family: "Arial", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    resize: none;
+    transition: all 0.3s ease;
+}
+
+.input-text:focus {
+    outline: none;
+    box-shadow: 0px 5px 25px rgba(93, 22, 204, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.input-text::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.summarize-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.summarize-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, rgba(93,22,204,1) 0%, rgba(147,51,234,1) 50%, rgba(7,82,97,1) 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(93, 22, 204, 0.4);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.summarize-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(7,82,97,1) 0%, rgba(147,51,234,1) 50%, rgba(93,22,204,1) 100%);
+    transition: left 0.5s ease;
+    z-index: -1;
+}
+
+.summarize-btn:hover::before {
+    left: 0;
+}
+
+.summarize-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(93, 22, 204, 0.6);
+}
+
+.summarize-btn:active {
+    transform: translateY(1px);
+}
+
+.summarize-btn.loading {
+    background: linear-gradient(45deg, rgba(93,22,204,1) 0%, rgba(147,51,234,1) 50%, rgba(7,82,97,1) 100%);
+    color: rgba(255, 255, 255, 0.7);
+    position: relative;
+}
+
+.summarize-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: calc(50% - 10px);
+    right: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.summary-box {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    font-family: "Arial", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0px 5px 25px rgba(93, 22, 204, 0.5);
+    }
+    100% {
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.summary-box:not(:empty) {
+    animation: pulse 2s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+    }
+    
+    .left-section, 
+    .right-section {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .input-text,
+    .summary-box {
+        min-height: 250px;
+    }
+}
